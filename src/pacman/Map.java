@@ -5,9 +5,9 @@ import java.io.FileReader;
 import java.util.ArrayList;
 
 public class Map {
-	public static char[][] map = Map.parseMap("src/files/pacmanscribed.txt");
+	public static char[][] map = Map.createMap("src/files/pacmanscribed.txt");
 	public static int[] sizeArr;
-	public static ArrayList<Entity> objList;
+	public static ArrayList<Entity> objList = Map.parseMap(map);
 	
 	public static ArrayList<String> getFile(String fileName){
 		ArrayList<String> list = new ArrayList<>();
@@ -51,33 +51,23 @@ public class Map {
 		}
 		return output;
 	}
-	public static char[][] parseMap(String fileName){
+	public static ArrayList<Entity> parseMap(Char[][] map){
 		String[] colors = {"red","orange","blue","pink"};
-		char[][] map = createMap(fileName);
-		sizeArr = getDimensions(map);
-		char[][] out = new char[map.length][map[0].length];
 		int ghostCounter = 0;
-		char c;
 		ArrayList<Entity> objList = new ArrayList<>();
-		for(int y = 0;y<out.length;y++) {
-			for(int x = 0;x<out[y].length;x++) {
-				c = map[y][x];
-				if(c=='1'||c=='2'||c==' ') {out[y][x]=c;}
-				else if(c=='3') {out[y][x]='0';}
-				else if(c=='4') {
-					out[y][x]='4';
+		for(char[] list: map) {
+			for(char c: list) {
+				if(c=='4') {
 					String[] arr = {"ghost",colors[ghostCounter]};
 					objList.add(new Entity(x,y,arr,Const.Dir.up));
 					ghostCounter++;
 				}
 				else if(c=='5') {
-					out[y][x]='0';
 					String[] arr = {"pac"};
 					objList.add(new Entity(x,y,arr,Const.Dir.up));
 				}
 			}
 		}
-		Map.objList = objList;
-		return out;
+		return objList;
 	}
 }
