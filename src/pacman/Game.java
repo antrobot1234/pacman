@@ -1,9 +1,7 @@
 package pacman;
 
-import java.awt.Color;
-import java.awt.Graphics;
+import java.awt.*;
 import java.awt.image.BufferStrategy;
-import java.util.Map.Entry;
 
 public class Game implements Runnable{
 	private Display display;
@@ -27,8 +25,8 @@ public class Game implements Runnable{
 		g = bs.getDrawGraphics();
 		g.setColor(new Color(0, 0, 0));
 		g.fillRect(0, 0, width, height);
-		DrawTools.drawMap(g, Map.map);
-		DrawTools.drawEntity(g, Map.objList);
+		DrawTools.drawMap(g, GameMap.map);
+		DrawTools.drawEntity(g, GameMap.objList);
 		
 		bs.show();
 		g.dispose();
