@@ -6,11 +6,17 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class GameMap {
-	public static ArrayList<String> file = getFile("src/files/pacmanscribed.txt");
-	public static int[] sizeArr = getDimensions(file);
-	public static char[][] map = createMap(file);
-	public static HashMap<String,Entity> objList = parseMap(map);
-	
+	public ArrayList<String> file;
+	public int[] sizeArr;
+	public char[][] map;
+	public HashMap<String,Entity> objList;
+
+	public GameMap(String fileName){
+		this.file = getFile(fileName);
+		sizeArr = getDimensions(file);
+		map = createMap(file,sizeArr);
+		objList = parseMap(map,sizeArr);
+	}
 
 	public static ArrayList<String> getFile(String fileName){
 		ArrayList<String> list = new ArrayList<>();
@@ -41,7 +47,7 @@ public class GameMap {
 		arr[1] = map.length;
 		return arr;
 	}**/
-	public static char[][] createMap(ArrayList<String> map){
+	public static char[][] createMap(ArrayList<String> map,int[] sizeArr){
 		if(map==null) return null;
 		char[][] output = new char[sizeArr[1]][sizeArr[0]];
 		for(int i =0;i<map.size();i++) {
@@ -49,7 +55,7 @@ public class GameMap {
 		}
 		return output;
 	}
-	public static HashMap<String,Entity> parseMap(char[][] map){
+	public static HashMap<String,Entity> parseMap(char[][] map,int[] sizeArr){
 		String[] colors = {"red","orange","blue","pink"};
 		int ghostCounter = 0;
 		char c;

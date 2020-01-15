@@ -11,11 +11,13 @@ public class Game implements Runnable{
 	private Thread thread;
 	private BufferStrategy bs;
 	private Graphics g;
+	private GameMap gameMap;
 
-	public Game(String title, int width, int height){
+	public Game(String title, int width, int height, GameMap gameMap){
 		this.width = width;
 		this.height = height;
 		this.title = title;
+		this.gameMap = gameMap;
 	}
 	private void init(){display = new Display(title,width,height);}
 	private void tick(){}
@@ -25,8 +27,8 @@ public class Game implements Runnable{
 		g = bs.getDrawGraphics();
 		g.setColor(new Color(0, 0, 0));
 		g.fillRect(0, 0, width, height);
-		DrawTools.drawMap(g, GameMap.map);
-		DrawTools.drawEntity(g, GameMap.objList);
+		DrawTools.drawMap(g, gameMap.map);
+		DrawTools.drawEntity(g, gameMap.objList);
 		
 		bs.show();
 		g.dispose();
