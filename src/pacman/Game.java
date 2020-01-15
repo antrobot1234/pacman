@@ -27,7 +27,7 @@ public class Game implements Runnable{
 		bs =  display.canvas.getBufferStrategy();
 		if(bs == null) {display.canvas.createBufferStrategy(2);return;}
 		g = bs.getDrawGraphics();
-		g.setColor(new Color(0, 0, 0));
+		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, width, height);
 		DrawTools.drawMap(g, gameMap.map);
 		DrawTools.drawEntity(g, gameMap.objList);
