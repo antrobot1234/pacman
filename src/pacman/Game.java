@@ -1,5 +1,7 @@
 package pacman;
 
+import pacman.states.State;
+
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 
@@ -11,8 +13,9 @@ public class Game implements Runnable{
 	private Thread thread;
 	private BufferStrategy bs;
 	private Graphics g;
-	private GameMap gameMap;
+	public GameMap gameMap;
 	private FpsLimiter fps;
+	public State currentState;
 
 	public Game(String title, int width, int height, GameMap gameMap){
 		this.width = width;
@@ -20,18 +23,15 @@ public class Game implements Runnable{
 		this.title = title;
 		this.gameMap = gameMap;
 		fps = new FpsLimiter(60);
+		currentState = State.states.get("game");
 	}
 	private void init(){display = new Display(title,width,height);}
-	private void tick(){}
+	private void tick(){currentState.tick(this);}
 	private void render(){
 		bs =  display.canvas.getBufferStrategy();
 		if(bs == null) {display.canvas.createBufferStrategy(2);return;}
 		g = bs.getDrawGraphics();
-		g.setColor(Color.BLACK);
-		g.fillRect(0, 0, width, height);
-		DrawTools.drawMap(g, gameMap.map);
-		DrawTools.drawEntity(g, gameMap.objList);
-		
+		currentState.render(g,this);
 		bs.show();
 		g.dispose();
 	}
