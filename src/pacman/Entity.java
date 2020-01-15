@@ -4,12 +4,11 @@ import java.util.ArrayList;
 
 public class Entity {
 	public Coord pos;
-	public ArrayList<String> tags;
+	public String type;
 	public Const.Dir dir;
-	public Entity(int x, int y, String[] arr,Const.Dir direction) {
-		tags = new ArrayList<>();
-		for(String str: arr) {tags.add(str);}
-		pos = new Coord(x,y);
+	public Entity(int x, int y,String type,Const.Dir direction,int size) {
+		this.type = type;
+		pos = new Coord(x,y,size);
 		dir = direction;
 	}
 	public void step() {

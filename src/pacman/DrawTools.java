@@ -3,6 +3,8 @@ package pacman;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Polygon;
+import java.util.HashMap;
+import java.util.Map.Entry;
 import java.util.Random;
 import pacman.Const.Dir;
 
@@ -49,12 +51,16 @@ public class DrawTools {
 			}
 		}
 	}
-	public static void drawEntity(Graphics g,Entity e) {
-		if(e.tags.contains("pac")) {g.setColor(Color.YELLOW);}
-		else if(e.tags.contains("blue")) {g.setColor(Color.CYAN);}
-		else if(e.tags.contains("orange")) {g.setColor(Color.ORANGE);}
-		else if(e.tags.contains("red")) {g.setColor(Color.RED);}
-		else if(e.tags.contains("pink")) {g.setColor(Color.PINK);}
-		drawSquare(g, e.pos.x, e.pos.y.getVal());
+	public static void drawEntity(Graphics g,HashMap<String,Entity> s) {
+		for(Entry<String,Entity> e: s.entrySet()) {
+			Entity entity = e.getValue();
+			if(e.getKey().equals("pac")) {g.setColor(Color.YELLOW);}
+			else if(e.getKey().equals("blue")) {g.setColor(Color.CYAN);}
+			else if(e.getKey().equals("orange")) {g.setColor(Color.ORANGE);}
+			else if(e.getKey().equals("red")) {g.setColor(Color.RED);}
+			else if(e.getKey().equals("pink")) {g.setColor(Color.PINK);}
+			drawSquare(g, entity.pos.x, entity.pos.y.getVal());
+		}
+		
 	}
 }
