@@ -8,7 +8,7 @@ import java.util.HashMap;
 public class GameMap {
 	public static ArrayList<String> file = getFile("src/files/pacmanscribed.txt");
 	public static int[] sizeArr = getDimensions(file);
-	public static char[][] map = GameMap.createMap(file);
+	public static char[][] map = createMap(file);
 	public static HashMap<String,Entity> objList = parseMap(map);
 	
 
