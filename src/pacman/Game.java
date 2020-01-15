@@ -12,12 +12,14 @@ public class Game implements Runnable{
 	private BufferStrategy bs;
 	private Graphics g;
 	private GameMap gameMap;
+	private FpsLimiter fps;
 
 	public Game(String title, int width, int height, GameMap gameMap){
 		this.width = width;
 		this.height = height;
 		this.title = title;
 		this.gameMap = gameMap;
+		fps = new FpsLimiter(60);
 	}
 	private void init(){display = new Display(title,width,height);}
 	private void tick(){}
@@ -35,9 +37,11 @@ public class Game implements Runnable{
 	}
 	public void run() {
 		init();
+
 		while(running) {
+			if(fps.check()){
 			tick();
-			render();
+			render();}
 		}
 		stop();
 	}
