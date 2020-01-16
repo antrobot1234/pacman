@@ -15,6 +15,10 @@ public class Coord {
 		x += xI;
 		y.sum(yI);
 	}
+	public void sum(int[] arr){
+		x+=arr[0];
+		y.sum(arr[1]);
+	}
 	public void sum(Coord c) {
 		x += c.x;
 		y.sum(c.y.getVal());
