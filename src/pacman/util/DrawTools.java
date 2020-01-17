@@ -18,7 +18,7 @@ public class DrawTools {
     }
     public static void drawSquare(Graphics g, int x, int y, Const.Dir dir, int scale){
 	    int[] arr = Const.dirMap.get(dir);
-	    drawSquare(g,x,y,arr[0]*scale,arr[1]*scale*-1);
+	    drawSquare(g,x,y,arr[0]*scale,arr[1]*scale);
     }
 	public static Color randColor(int minCol,int maxCol) {
 		int[] colArr = new int[3];

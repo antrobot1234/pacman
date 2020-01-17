@@ -2,9 +2,11 @@ package pacman.states;
 
 import pacman.Game;
 import pacman.Main;
+import pacman.objects.Entity;
 import pacman.util.DrawTools;
 
 import java.awt.*;
+import java.util.Map;
 
 public class GameState implements State{
 
@@ -19,7 +21,12 @@ public class GameState implements State{
 
     public void tick(Game g) {
         t++;
-        if(t>=total)t=0;
+        if(t>=total){
+            for(Map.Entry<String, Entity> e:g.gameMap.objList.entrySet()){
+                e.getValue().tick(g);
+            }
+            t=0;
+        }
     }
     public void render(Graphics g, Game game) {
         s = (int) (t*(Main.scaleFactor/total));

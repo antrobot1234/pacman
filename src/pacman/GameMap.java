@@ -77,4 +77,8 @@ public class GameMap {
 		}
 		return objList;
 	}
+	public boolean check(Entity e,Const.Dir dir){
+		int[] temp = Const.vectSum(Const.dirMap.get(dir),e.pos.asArr());
+		return(map[temp[1]][temp[0]] != ' ');
+	}
 }

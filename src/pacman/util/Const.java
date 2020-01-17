@@ -9,8 +9,15 @@ public class Const {
 		HashMap<Dir,int[]> map = new HashMap<>();
 		map.put(Dir.left, new int[]{-1, 0});
 		map.put(Dir.right, new int[]{1,0});
-		map.put(Dir.up, new int[]{0,1});
-		map.put(Dir.down, new int[]{0,-1});
+		map.put(Dir.up, new int[]{0,-1});
+		map.put(Dir.down, new int[]{0,1});
 		return map;
+	}
+	public static int[] vectSum(int[] a,int[] b){
+		int[] c = new int[a.length];
+		for(int i=0;i<a.length;i++){
+			c[i] = a[i]+b[i];
+		}
+		return c;
 	}
 }

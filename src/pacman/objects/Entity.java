@@ -1,5 +1,6 @@
 package pacman.objects;
 
+import pacman.Game;
 import pacman.util.Const;
 
 public class Entity {
@@ -23,5 +24,8 @@ public class Entity {
 	}
 	public void step() {
 		pos.sum(Const.dirMap.get(dir));
+	}
+	public void tick(Game g){
+		//todo movement check
 	}
 }

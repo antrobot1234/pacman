@@ -7,6 +7,12 @@ public class Coord {
 		x = new WrapInt(xI,0,size);
 		y = yI;
 	}
+	public int[] asArr(){
+		int[] out = new int[2];
+		out[0] = x.getVal();
+		out[1] = y;
+		return out;
+	}
 
 	public void sum(int xI, int yI) {
 		x.sum(xI);
