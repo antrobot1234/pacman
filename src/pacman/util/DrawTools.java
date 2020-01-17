@@ -9,16 +9,16 @@ import java.util.Map.Entry;
 import java.util.Random;
 
 public class DrawTools {
-	private static int scale = Main.scaleFactor;
+	private static int scaleFactor = Main.scaleFactor;
 	public static void drawSquare(Graphics g,int x,int y) {
-		g.fillRect(x*scale, y*scale, scale, scale);
+		g.fillRect(x* scaleFactor, y* scaleFactor, scaleFactor, scaleFactor);
 	}
 	public static void drawSquare(Graphics g,int x,int y,int xOfs,int yOfs){
-	    g.fillRect(x*scale+xOfs,x*scale+yOfs,scale,scale);
+	    g.fillRect(x* scaleFactor +xOfs,x* scaleFactor +yOfs, scaleFactor, scaleFactor);
     }
     public static void drawSquare(Graphics g, int x, int y, Const.Dir dir, int scale){
 	    int[] arr = Const.dirMap.get(dir);
-	    drawSquare(g,x,y,arr[0]*scale,arr[1]*scale);
+	    drawSquare(g,x,y,arr[0]*scale,arr[1]*scale*-1);
     }
 	public static Color randColor(int minCol,int maxCol) {
 		int[] colArr = new int[3];
@@ -32,8 +32,8 @@ public class DrawTools {
 		return new Color(colArr[0],colArr[1],colArr[2]);
 	}
 	public static void drawSquare(Graphics g,int x,int y,int size) {
-		int sf = scale-size;
-		g.fillRect(x*scale+sf/2, y*scale+sf/2, scale-sf, scale-sf);
+		int sf = scaleFactor -size;
+		g.fillRect(x* scaleFactor +sf/2, y* scaleFactor +sf/2, scaleFactor -sf, scaleFactor -sf);
 		}
 	public static void drawMap(Graphics g,char[][] map) {
 		for(int y=0;y<map.length;y++) {
@@ -58,7 +58,7 @@ public class DrawTools {
 			}
 		}
 	}
-	public static void drawEntity(Graphics g,HashMap<String, Entity> s) {
+	public static void drawEntity(Graphics g,HashMap<String, Entity> s,int scale) {
 		for(Entry<String,Entity> e: s.entrySet()) {
 			Entity entity = e.getValue();
 			switch (e.getKey()) {
@@ -78,7 +78,8 @@ public class DrawTools {
 					g.setColor(Color.PINK);
 					break;
 			}
-			drawSquare(g, entity.pos.x, entity.pos.y.getVal());
+			//drawSquare(g, entity.pos.x.getVal(), entity.pos.y);
+			drawSquare(g, entity.pos.x.getVal(), entity.pos.y,entity.dir,scale);
 		}
 		
 	}
