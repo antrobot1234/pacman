@@ -3,8 +3,10 @@ package pacman;
 import pacman.objects.Display;
 import pacman.states.State;
 import pacman.util.FpsLimiter;
+import pacman.util.KeyWorker;
 
 import java.awt.*;
+import java.awt.event.KeyListener;
 import java.awt.image.BufferStrategy;
 
 public class Game implements Runnable{
@@ -18,6 +20,7 @@ public class Game implements Runnable{
 	public GameMap gameMap;
 	private FpsLimiter fps;
 	public State currentState;
+	public KeyListener keys;
 
 	public Game(String title, int width, int height, GameMap gameMap){
 		this.width = width;
@@ -26,8 +29,12 @@ public class Game implements Runnable{
 		this.gameMap = gameMap;
 		fps = new FpsLimiter(60);
 		currentState = State.states.get("game");
+		keys = new KeyWorker();
 	}
-	private void init(){display = new Display(title,width,height);}
+	private void init(){
+		display = new Display(title,width,height);
+		display.frame.addKeyListener(keys);
+	}
 	private void tick(){currentState.tick(this);}
 	private void render(){
 		bs =  display.canvas.getBufferStrategy();

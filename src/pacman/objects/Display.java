@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Display {
-	private JFrame frame;
+	public JFrame frame;
 	public Canvas canvas;
 	
 	private String title;
@@ -22,8 +22,9 @@ public class Display {
 		frame.setResizable(false);
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
-		
+
 		canvas = new Canvas();
+		canvas.setFocusable(false);
 		canvas.setPreferredSize(new Dimension(width,height));
 		
 		frame.add(canvas);
