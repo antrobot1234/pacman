@@ -1,4 +1,4 @@
-package pacman;
+package pacman.util;
 
 public class FpsLimiter {
     private double tPU;

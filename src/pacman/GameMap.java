@@ -1,5 +1,8 @@
 package pacman;
 
+import pacman.objects.Entity;
+import pacman.util.Const;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
@@ -9,7 +12,7 @@ public class GameMap {
 	public ArrayList<String> file;
 	public int[] sizeArr;
 	public char[][] map;
-	public HashMap<String,Entity> objList;
+	public HashMap<String, Entity> objList;
 
 	public GameMap(String fileName){
 		this.file = getFile(fileName);
@@ -64,7 +67,7 @@ public class GameMap {
 			for(int x = 0;x<map[y].length;x++) {
 				c = map[y][x];
 				if(c=='4') {
-					objList.put(colors[ghostCounter],new Entity(x,y,"ghost",Const.Dir.up,sizeArr[0]));
+					objList.put(colors[ghostCounter],new Entity(x,y,"ghost", Const.Dir.up,sizeArr[0]));
 					ghostCounter++;
 				}
 				else if(c=='5') {

@@ -1,7 +1,7 @@
 package pacman.states;
 
-import pacman.DrawTools;
 import pacman.Game;
+import pacman.util.DrawTools;
 
 import java.awt.*;
 

@@ -1,6 +1,8 @@
 package pacman;
 
+import pacman.objects.Display;
 import pacman.states.State;
+import pacman.util.FpsLimiter;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
