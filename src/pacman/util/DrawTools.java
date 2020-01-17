@@ -14,7 +14,7 @@ public class DrawTools {
 		g.fillRect(x* scaleFactor, y* scaleFactor, scaleFactor, scaleFactor);
 	}
 	public static void drawSquare(Graphics g,int x,int y,int xOfs,int yOfs){
-	    g.fillRect(x* scaleFactor +xOfs,x* scaleFactor +yOfs, scaleFactor, scaleFactor);
+	    g.fillRect(x* scaleFactor +xOfs,y* scaleFactor +yOfs, scaleFactor, scaleFactor);
     }
     public static void drawSquare(Graphics g, int x, int y, Const.Dir dir, int scale){
 	    int[] arr = Const.dirMap.get(dir);
@@ -78,8 +78,8 @@ public class DrawTools {
 					g.setColor(Color.PINK);
 					break;
 			}
-			//drawSquare(g, entity.pos.x.getVal(), entity.pos.y);
-			drawSquare(g, entity.pos.x.getVal(), entity.pos.y,entity.dir,scale);
+			if(entity.stunned)drawSquare(g, entity.pos.x.getVal(), entity.pos.y);
+			else drawSquare(g, entity.pos.x.getVal(), entity.pos.y,entity.dir,scale);
 		}
 		
 	}
