@@ -20,4 +20,14 @@ public class Const {
 		}
 		return c;
 	}
+	public static Dir opp(Dir dir){
+		switch(dir){
+			case up:return Dir.down;
+			case down:return Dir.up;
+			case left:return Dir.right;
+			case right:return Dir.left;
+		}
+		return null;
+	}
+
 }
