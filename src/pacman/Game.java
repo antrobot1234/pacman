@@ -2,11 +2,11 @@ package pacman;
 
 import pacman.objects.Display;
 import pacman.states.State;
+import pacman.util.Const;
 import pacman.util.FpsLimiter;
 import pacman.util.KeyWorker;
 
 import java.awt.*;
-import java.awt.event.KeyListener;
 import java.awt.image.BufferStrategy;
 
 public class Game implements Runnable{
@@ -20,7 +20,8 @@ public class Game implements Runnable{
 	public GameMap gameMap;
 	private FpsLimiter fps;
 	public State currentState;
-	public KeyListener keys;
+	public KeyWorker keys;
+	public Const.Dir dir;
 
 	public Game(String title, int width, int height, GameMap gameMap){
 		this.width = width;
@@ -30,12 +31,20 @@ public class Game implements Runnable{
 		fps = new FpsLimiter(60);
 		currentState = State.states.get("game");
 		keys = new KeyWorker();
+		dir = Const.Dir.up;
+
 	}
 	private void init(){
 		display = new Display(title,width,height);
 		display.frame.addKeyListener(keys);
 	}
-	private void tick(){currentState.tick(this);}
+	private void tick(){
+		Const.Dir temp = keys.check();
+		if(temp!=null){
+			dir = temp;
+		}
+		currentState.tick(this);
+	}
 	private void render(){
 		bs =  display.canvas.getBufferStrategy();
 		if(bs == null) {display.canvas.createBufferStrategy(2);return;}
