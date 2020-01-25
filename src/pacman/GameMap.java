@@ -13,11 +13,14 @@ public class GameMap {
 	public int[] sizeArr;
 	public char[][] map;
 	public HashMap<String, Entity> objList;
+	public int pellets;
+	public int powerTime;
 
 	public GameMap(String fileName){
 		this.file = getFile(fileName);
 		sizeArr = getDimensions(file);
 		map = createMap(file,sizeArr);
+		pellets = getPellets(map);
 		objList = parseMap(map,sizeArr);
 	}
 
@@ -77,8 +80,31 @@ public class GameMap {
 		}
 		return objList;
 	}
+	public int getPellets(char[][] map){
+		int p = 0;
+		for(char[] line:map){
+			for(char c:line){
+				if(c=='1')p++;
+			}
+		}
+		return p;
+	}
+	public void waka(int[] arr){
+		char c = map[arr[1]][arr[0]];
+		if(c=='1'){
+			map[arr[1]][arr[0]]='0';
+			pellets--;
+		}
+		if(c=='2'){
+			map[arr[1]][arr[0]]='0';
+			powerTime = 300;
+		}
+	}
 	public boolean check(Entity e,Const.Dir dir){
 		int[] temp = Const.vectSum(Const.dirMap.get(dir),e.pos.asArr());
+		if(temp[0]<0||temp[0]>=sizeArr[0]){
+			return true;
+		}
 		return(map[temp[1]][temp[0]] != ' ');
 	}
 }

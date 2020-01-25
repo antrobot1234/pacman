@@ -20,6 +20,9 @@ public class Const {
 		}
 		return c;
 	}
+	public static double distance(int[] a,int[]b){
+		return Math.sqrt( Math.pow(Math.abs(a[0]-b[0]),2) + Math.pow(Math.abs(a[1]-b[1]),2));
+	}
 	public static Dir opp(Dir dir){
 		switch(dir){
 			case up:return Dir.down;

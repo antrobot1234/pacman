@@ -10,7 +10,7 @@ public class WinState implements State {
     }
 
     public void render(Graphics g, Game game) {
-        g.clearRect(0,0,game.width,game.height);
-        g.drawString("you win!",200,300);
+        g.clearRect(0, 0, game.width, game.height);
+        g.drawString("you win!", 200, 300);
     }
 }

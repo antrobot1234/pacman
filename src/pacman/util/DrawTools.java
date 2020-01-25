@@ -9,6 +9,7 @@ import java.util.Map.Entry;
 import java.util.Random;
 
 public class DrawTools {
+	public static Color bitColor = new Color(100,100,255);
 	private static int scaleFactor = Main.scaleFactor;
 	public static void drawSquare(Graphics g,int x,int y) {
 		g.fillRect(x* scaleFactor, y* scaleFactor, scaleFactor, scaleFactor);
@@ -20,6 +21,10 @@ public class DrawTools {
 	    int[] arr = Const.dirMap.get(dir);
 	    drawSquare(g,x,y,arr[0]*scale,arr[1]*scale);
     }
+    public static void drawSquare(Graphics g, int[] arr, Const.Dir dir, int scale){
+		int[] darr = Const.dirMap.get(dir);
+		drawSquare(g,arr[0],arr[1],darr[0]*scale,darr[1]*scale);
+	}
 	public static Color randColor(int minCol,int maxCol) {
 		int[] colArr = new int[3];
 		Random random = new Random();
@@ -58,9 +63,16 @@ public class DrawTools {
 			}
 		}
 	}
-	public static void drawEntity(Graphics g,HashMap<String, Entity> s,int scale) {
+	public static void drawEntity(Graphics g,HashMap<String, Entity> s,int scale,boolean bit) {
 		for(Entry<String,Entity> e: s.entrySet()) {
 			Entity entity = e.getValue();
+			if(bit){
+				switch (e.getKey()) {
+					case "pac":g.setColor(Color.YELLOW);break;
+					default:g.setColor(bitColor);
+				}
+			}
+			else{
 			switch (e.getKey()) {
 				case "pac":
 					g.setColor(Color.YELLOW);
@@ -77,9 +89,9 @@ public class DrawTools {
 				case "pink":
 					g.setColor(Color.PINK);
 					break;
-			}
+			}}
 			if(entity.stunned)drawSquare(g, entity.pos.x.getVal(), entity.pos.y);
-			else drawSquare(g, entity.pos.x.getVal(), entity.pos.y,entity.dir,scale);
+			else drawSquare(g, Const.vectSum(entity.pos.asArr(),Const.dirMap.get(Const.opp(entity.dir))),entity.dir,scale);
 		}
 		
 	}
