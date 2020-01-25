@@ -8,7 +8,7 @@
     1 0000000 1    
     1 0  4  0 1    
 0000100 444 0010000
-    1 0     0 1    
+    1 0  0  0 1    
     1 0000000 1    
     1 0     0 1    
  11111111 11111111 
@@ -23,6 +23,6 @@
 space = wall/void
 1 = pellet
 2 = big pellet
-3 = empty pathway
+0 = empty pathway
 4 = ghost territory (includes door)
 5 = pac man himself
