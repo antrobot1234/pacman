@@ -11,6 +11,9 @@ public interface State {
     static HashMap<String,State> init(){
         HashMap<String,State> st = new HashMap<>();
         st.put("game",new GameState());
+        st.put("start",new StartState());
+        st.put("win",new WinState());
+        st.put("lose",new LoseState());
 
         return st;
     }
